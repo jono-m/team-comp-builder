@@ -6,7 +6,7 @@ body {
 #titlebar {
     background-color: #000088;
     padding: 20px 0px 20px 0px;
-    width: 100%;
+    min-width: 800px;
 }
 #logo {
     display: inline-block;
@@ -38,7 +38,10 @@ body {
     color: #AAAAFF;
 }
 #content {
+    margin: auto;
     padding: 80px;
+    min-width: 750px;
+    max-width: 1000px;
 }
 .header1 {
     display: inline-block;
@@ -149,4 +152,24 @@ body {
 }
 .function-strong:hover {
     background-color: #AA0000;
+}
+.tabbar {
+    margin: auto;
+    width: 100%;
+    display: block;
+    text-align: center;
+    border-width: 2px 0 2px 0;
+    border-color: #FFFFFF;
+    border-style: solid;
+    margin-bottom: 20px;
+}
+.tab {
+    float: left;
+    display: inline-block;
+    padding: 5px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    cursor: hand;
+    background-color: #444444;
 }
