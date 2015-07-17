@@ -1,0 +1,152 @@
+body {
+    background-color: #000033;
+    font-family: "Helvetica", sans-serif;
+    color: #FFFFFF;
+}
+#titlebar {
+    background-color: #000088;
+    padding: 20px 0px 20px 0px;
+    width: 100%;
+}
+#logo {
+    display: inline-block;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 15px;
+    margin-left: 20px;
+    margin-right: 50px;
+}
+#nav {
+    display: inline-block;
+}
+.navitem {
+    display: inline-block;
+    margin-right: 30px;
+    padding: 0 10px 0 10px;
+    border-width: 0 2px 0 2px;
+    border-color: #AAAAFF;
+    border-style: solid;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+}
+.navitem a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.navitem a:hover {
+    color: #AAAAFF;
+}
+#content {
+    padding: 80px;
+}
+.header1 {
+    display: inline-block;
+    float: left;
+    clear: both;
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 40px;
+}
+.header2 {
+    clear: both;
+    color: #AAAAAA;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+.header3 {
+    font-size: 12px;
+    color: #888888;
+    margin-bottom: 10px;
+}
+.div-title {
+    margin-bottom: 10px;
+}
+.listbox {
+    clear: both;
+    overflow-y: auto;
+}
+.listbox-item {
+    position: relative;
+    display: inline-block;
+    margin: 2px;
+    text-align: center;
+    z-index: 1;
+    background-color: #777777;
+}
+.listbox-item a {
+    position: relative;
+    left: 0;
+    top: 0;
+    display: table-cell;
+    vertical-align: middle;
+    color: #FFFFFF;
+    text-decoration: none;
+    width: 80px;
+    height: 80px;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 10px;
+    z-index: 2;
+    /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+
+    background:rgba(0, 0, 0, 0.7);
+}
+
+.listbox-item a:hover {
+    background:rgba(0, 0, 0, 0.4);
+}
+
+.listbox-item-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.listbox-add {
+    background-color: #555555;
+}
+.listbox-add a {
+    color: #888888;
+    font-size: 40px;
+}
+.listbox-divider {
+    min-height: 80px;
+    padding: 10px;
+    background-color: #111111;
+    margin: 0 0 10px 0;
+}
+.button {
+    display: inline-block;
+    height: 15px;
+    padding: 5px;
+    line-height: 15px;
+    font-size: 10px;
+    border: #888888 2px solid;
+    color: #CCCCCC;
+    background-color: #000044;
+    cursor: pointer; cursor: hand;
+}
+.button:hover {
+    background-color: #000066;
+}
+.function-strong {
+    background-color: #880000;
+}
+.function-strong:hover {
+    background-color: #AA0000;
+}

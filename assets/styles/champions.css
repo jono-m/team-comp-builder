@@ -1,0 +1,7 @@
+#champlist {
+    height: 500px;
+    overflow-y: auto;
+}
+.champion {
+    color: #FFFFFF;
+}
