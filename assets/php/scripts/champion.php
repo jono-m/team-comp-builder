@@ -40,7 +40,7 @@ switch($method) {
         $champ_name = urlvar("champ_name");
         $db->add_champ($comp_type);
         break;
-    case "updatestrength":
+    case "update_strength":
         $champ_id = urlvar("champ_id");
         $comp_id = urlvar("comp_id");
         $strength = urlvar("strength");

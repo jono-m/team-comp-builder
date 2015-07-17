@@ -2,6 +2,13 @@ $( document ).ready(function() {
     $(".tab").click(function() {
         page.show_tab($(this)[0].id);
     });
+    $("#add_player").click(function() {
+        page.add_player();
+    });
+    $("#add_comp_type").click(function() {
+        page.add_comp_type();
+    });
+
     page.refreshChampionList();
     page.refreshPlayerList();
     page.refreshCompTypeList();
@@ -13,18 +20,15 @@ var page = (function() {
     var pri = {}
 
     pub.refreshPlayerList = function() {
-        player_manager.retrieve_all_callback = pri.fillPlayerList;
-        player_manager.retrieve_all();
+        player_manager.retrieve_all(pri.fillPlayerList);
     }
 
     pub.refreshChampionList = function() {
-        champion_manager.retrieve_all_callback = pri.fillChampionList;
-        champion_manager.retrieve_all();
+        champion_manager.retrieve_all(pri.fillChampionList);
     }
 
     pub.refreshCompTypeList = function() {
-        comp_type_manager.retrieve_all_callback = pri.fillCompTypeList;
-        comp_type_manager.retrieve_all();
+        comp_type_manager.retrieve_all(pri.fillCompTypeList);
     }
 
     pub.show_tab = function(tab) {
@@ -40,6 +44,20 @@ var page = (function() {
             $("#tabpage_champions").show();
         }
         $("#" + tab).addClass("tab-current");
+    }
+
+    pub.add_player = function() {
+        var new_name = prompt("Enter the name of the new player.", "");
+        if(new_name != null) {
+            player_manager.new(new_name, page.refreshPlayerList);
+        }
+    }
+
+    pub.add_comp_type = function() {
+        var new_comp_type = prompt("Enter the name of the new composition type.", "");
+        if(new_comp_type != null) {
+            comp_type_manager.new(new_comp_type, page.refreshCompTypeList);
+        }
     }
 
     pri.fillPlayerList = function(player_list) {
@@ -59,7 +77,7 @@ var page = (function() {
             champion = champion_list[champ_index];
             $("#champion_list").append('<div class="listbox-item">' +
                                             '<img src="' + champion.champ_img + '" class="listbox-item-image"/>' +
-                                            '<a href="champion.php?champ_id=' + champion.champ_id + '">' + 
+                                            '<a href="/teamsetup/champion/?champ_id=' + champion.champ_id + '">' + 
                                                 champion.champ_name + 
                                             '</a>' +
                                         '</div>');
