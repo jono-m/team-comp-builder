@@ -9,10 +9,19 @@ $( document ).ready(function() {
         page.add_comp_type();
     });
 
+    $("#champ_comp_types .popup-close").click(function() {
+        page.hide_champ_comp_types();
+    });
+
+    $("#champ_comp_types .popup-confirm").click(function() {
+        page.update_champ_comp_types();
+    });
+
     page.refreshChampionList();
     page.refreshPlayerList();
     page.refreshCompTypeList();
     page.show_tab("tab_players");
+    page.hide_champ_comp_types();
 });
 
 var page = (function() {
@@ -33,7 +42,7 @@ var page = (function() {
 
     pub.show_tab = function(tab) {
         $(".tabpage").hide();
-        $(".tabpage").removeClass("tab-current");
+        $(".tab").removeClass("tab-current");
         if(tab == "tab_players") {
             $("#tabpage_players").show();
         }
@@ -60,40 +69,98 @@ var page = (function() {
         }
     }
 
-    pri.fillPlayerList = function(player_list) {
-        for (player_index = 0; player_index < player_list.length; player_index++) {
-            player = player_list[player_index];
-            $("#player_list").append('<div class="listbox-item">' + 
+    pri.fillPlayerList = function() {
+        $("#player_list").children().not(":last").remove();
+        for (player_index = 0; player_index < player_manager.get_players().length; player_index++) {
+            player = player_manager.get_players()[player_index];
+            $("#add_player").before('<div class="listbox-item listbox-button">' + 
                                         '<a href="/teamsetup/player/?player_id=' + player.player_id + '">' +
                                             player.player_name +
                                         '</a>' +
                                       '</div>');
         }
-        $("#player_list").append('<div class="listbox-item listbox-add" id="add_player"><a href="#">+</a></div>');
     };
 
-    pri.fillChampionList = function(champion_list) {
-        for (champ_index = 0; champ_index < champion_list.length; champ_index++) {
-            champion = champion_list[champ_index];
-            $("#champion_list").append('<div class="listbox-item">' +
+    pri.fillChampionList = function() {
+        for (champ_index = 0; champ_index < champion_manager.get_champions().length; champ_index++) {
+            champion = champion_manager.get_champions()[champ_index];
+            $("#champion_list").append('<div class="listbox-item listbox-button" id="' + champion.champ_id + '">' +
                                             '<img src="' + champion.champ_img + '" class="listbox-item-image"/>' +
-                                            '<a href="/teamsetup/champion/?champ_id=' + champion.champ_id + '">' + 
-                                                champion.champ_name + 
-                                            '</a>' +
+                                            '<a>' + champion.champ_name + '</a>' +
                                         '</div>');
         }
+        $("#champion_list .listbox-button").click(function() {
+            pub.show_champ_comp_types($(this)[0].id);
+        });
     };
 
-    pri.fillCompTypeList = function(comp_type_list) {
-        for (comp_type_index = 0; comp_type_index < comp_type_list.length; comp_type_index++) {
-            comp_type = comp_type_list[comp_type_index];
-            $("#comp_type_list").append('<div class="listbox-item">' +
-                                            '<a href="">' + 
+    pri.fillCompTypeList = function() {
+        $("#comp_type_list").children().not(":last").remove();
+        for (comp_type_index = 0; comp_type_index < comp_type_manager.get_comp_types().length; comp_type_index++) {
+            comp_type = comp_type_manager.get_comp_types()[comp_type_index];
+            $("#add_comp_type").before('<div class="listbox-item">' +
+                                            '<a>' + 
                                                 comp_type.comp_type + 
                                             '</a>' +
                                         '</div>');
         }
-        $("#comp_type_list").append('<div class="listbox-item listbox-add" id="add_comp_type"><a href="#">+</a></div>');
     };
+
+    pri.champ_id = 0;
+    pri.comp_type_changes = {};
+
+    pub.refreshChampion = function() {
+        champion_manager.retrieve(pri.champ_id, pri.fillChampionCompTypes);
+    }
+
+    pub.show_champ_comp_types = function(champ_id) {
+        $("#champ_comp_types").show();
+        pri.champ_id = champ_id;
+        pri.comp_type_changes = [];
+        pub.refreshChampion();
+    }
+
+    pub.hide_champ_comp_types = function() {
+        $("#champ_comp_types").hide();
+    }
+
+    pub.update_champ_comp_types = function() {
+        for (var comp_id in pri.comp_type_changes) {
+          if (pri.comp_type_changes.hasOwnProperty(comp_id)) {
+            champion_manager.update_strength(pri.champ_id, comp_id, pri.comp_type_changes[comp_id], null);
+          }
+        }
+        pub.hide_champ_comp_types();
+    }
+
+    pri.fillChampionCompTypes = function() {
+        var champion = champion_manager.get_champion();
+        $("#champ_comp_types .popup-title").html(champion.champ_name);
+        $("#champ_comp_types .popup-titleimage").attr('src', champion.champ_img);
+        $("#comp_types").html('');
+        for (champ_comp_type_index = 0; champ_comp_type_index < champion.comp_types.length; champ_comp_type_index++) {
+            var comp_type = champion.comp_types[champ_comp_type_index]
+            $("#comp_types").append('<div class="listbox-divider clearfix" id="comp-type'+comp_type[0].comp_id+'">' +
+                                        '<div class="comp-label"><a>' + comp_type[0].comp_type + '</a></div>' +
+                                        '<div class="strength_selector">' +
+                                            '<div class="listbox-item listbox-button"><a class="S">S</a></div>' +
+                                            '<div class="listbox-item listbox-button"><a class="A">A</a></div>' +
+                                            '<div class="listbox-item listbox-button"><a class="B">B</a></div>' +
+                                            '<div class="listbox-item listbox-button"><a class="C">C</a></div>' +
+                                            '<div class="listbox-item listbox-button"><a class="D">D</a></div>' +
+                                        '</div>' +
+                                    '</div>');
+            $("#comp-type" + comp_type[0].comp_id + " ." + comp_type[1]).parent().addClass("listbox-button-active");
+            $("#comp-type" + comp_type[0].comp_id + " .listbox-button").click(function() {
+                if($(this).hasClass("listbox-button-active") == false) {
+                    var new_strength = $(this).children().html();
+                    pri.comp_type_changes[comp_type[0].comp_id] = new_strength;
+                    $(this).parent().find('.listbox-button-active').removeClass('listbox-button-active');
+                    $(this).addClass("listbox-button-active");
+                }
+            });
+        }
+    };
+
     return pub;
 }());

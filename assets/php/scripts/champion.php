@@ -30,10 +30,10 @@ switch($method) {
         );
         foreach ($champion_player_ids as $role => $player_ids) {
             foreach($player_ids as $player_id) {
-                $champion_players[$role][] = new Player($player_id);
+                $champion_players[$role][] = new Player($champ_id);
             }
         }
-        echo json_encode(array("champion" => new Champion($player_id),
+        echo json_encode(array("champion" => new Champion($champ_id),
                 "players" => $champion_players));
         break;
     case "new":

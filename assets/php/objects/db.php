@@ -47,7 +47,7 @@ class DB {
     }
 
     function get_player_name($player_id) {
-        $sql = "SELECT * FROM players WHERE player_id = " . $player_id;
+        $sql = "SELECT * FROM players WHERE player_id = " . $player_id . " ORDER BY player_name";
         $result = $this->query($sql);
         if ($result) {
             $row = $result->fetch_assoc();
@@ -115,7 +115,7 @@ class DB {
     }
 
     function get_champ_ids() {
-        $sql = "SELECT champ_id FROM champions";
+        $sql = "SELECT champ_id FROM champions ORDER BY champ_name";
         $result = $this->query($sql);
 
         $champ_ids = array();
@@ -175,7 +175,7 @@ class DB {
     }
 
     function get_comp_type_ids() {
-        $sql = "SELECT comp_id FROM comp_types";
+        $sql = "SELECT comp_id FROM comp_types ORDER BY comp_type";
         $result = $this->query($sql);
 
         $comp_ids = array();
@@ -204,7 +204,7 @@ class DB {
     }
 
     function remove_player_champion($player_id, $role, $champ_id) {
-        $sql = "DELETE FROM players_champions WHERE player_id = " . $player_id . " AND champ_id = " . $champ_id . "AND role = '" . $role . "'";
+        $sql = "DELETE FROM players_champions WHERE player_id = " . $player_id . " AND champ_id = " . $champ_id . " AND role = '" . $role . "'";
         $this->query($sql);
     }
 
@@ -257,7 +257,7 @@ class DB {
      // champions_comp_types table operations.
 
     function add_champions_comp_type($champ_id, $comp_id) {
-        $sql = "INSERT INTO champions_comp_types (champ_id, comp_id, strength) VALUES ('" . $champ_id . "', '" . $comp_id . "', '0')";
+        $sql = "INSERT INTO champions_comp_types (champ_id, comp_id, strength) VALUES ('" . $champ_id . "', '" . $comp_id . "', 'D')";
         $this->query($sql);
     }
 
@@ -267,7 +267,7 @@ class DB {
     }
 
     function update_champions_comp_type_strength($champ_id, $comp_id, $new_strength) {
-        $sql = "UPDATE champions_comp_types SET strength = " . $new_strength . " WHERE champ_id = " . $champ_id . " AND comp_id = " . $comp_id;
+        $sql = "UPDATE champions_comp_types SET strength = '" . $new_strength . "' WHERE champ_id = " . $champ_id . " AND comp_id = " . $comp_id;
         $this->query($sql);
     }
 

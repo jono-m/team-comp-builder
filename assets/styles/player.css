@@ -1,0 +1,9 @@
+#buttonpanel {
+    float: right;
+}
+.text-entry {
+    margin-bottom: 20px;
+}
+#champion_list {
+    height: 300px;
+}

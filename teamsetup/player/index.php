@@ -1,29 +1,59 @@
-<?php include_once 'header.php' ?>
-<link rel="stylesheet" type="text/css" href="styles/player.css">
+<?php include_once '../../header.php' ?>
+<link rel="stylesheet" type="text/css" href="/assets/styles/player.css">
 <script src="/assets/js/pages/player.js"></script>
 <script>var player_id = <?php echo $_GET["player_id"] ?></script>
 <div class="header1" id="player_name"></div>
 <div id="buttonpanel">
     <div class="button" id="rename_player">Rename</div>
-    <div class="button function-strong" id="delete_player">Delete Player</div>
+    <div class="button button-bad" id="delete_player">Delete Player</div>
 </div>
 <div class="header2">Champions</div>
-<div id="champion_list" class="listbox">
+<div class="listbox">
+    <div class="header3">Top Lane</div>
+    <div class="listbox-divider" id="top_laners">
+        <div class="listbox-item listbox-add listbox-button" id="add_top_laners"><a>+</a></div>
+    </div>
+    <div class="header3">Jungle</div>
+    <div class="listbox-divider" id="junglers">
+        <div class="listbox-item listbox-add listbox-button" id="add_junglers"><a>+</a></div>
+    </div>
+    <div class="header3">Mid Lane</div>
+    <div class="listbox-divider" id="mid_laners">
+        <div class="listbox-item listbox-add listbox-button" id="add_mid_laners"><a>+</a></div>
+    </div>
+    <div class="header3">AD Carry</div>
+    <div class="listbox-divider" id="adcs">
+        <div class="listbox-item listbox-add listbox-button" id="add_adcs"><a>+</a></div>
+    </div>
+    <div class="header3">Support</div>
+    <div class="listbox-divider" id="supports">
+        <div class="listbox-item listbox-add listbox-button" id="add_supports"><a>+</a></div>
+    </div>
 </div>
 <div class="popup" id="champselect">
+    <div class="popup-content">
+        <div class="popup-section clearfix">
+            <div class="popup-title header2">Add Champions</div>
+            <div class="button popup-close">X</div>
+            <div class="button button-good popup-confirm">✓</div>
+        </div>
+        <div class="text-entry">
+            <input type="text" id="champ_searchbox"/>
+        </div>
+        <div id="champion_list" class="listbox listbox-divider">
+        </div>
+    </div>
 </div>
-<?php include_once 'footer.php' ?>
-
-
-
-<?php
-    foreach($player->champions as $role => $champions) {
-        echo '<div class="listbox-divider"><div class="header3">' . $role . '</div>';
-        foreach($champions as $champion) {
-            echo '<div class="listbox-item"><img src="' . $champion->champ_img . '" class="listbox-item-image"/><a href="champion.php?champ_id=' 
-                . $champion->champ_id . '">' . $champion->champ_name . '</a></div>';
-        }
-        echo '<div class="listbox-item listbox-add"><a href="#">+</a></div>';
-        echo '</div>';
-    }
-?>
+<div class="popup" id="rename">
+    <div class="popup-content">
+        <div class="popup-section clearfix">
+            <div class="popup-title header2">Rename Player</div>
+            <div class="button popup-close">X</div>
+            <div class="button button-good popup-confirm">✓</div>
+        </div>
+        <div class="text-entry">
+            <input type="text" id="player_renamebox"/>
+        </div>
+    </div>
+</div>
+<?php include_once '../../footer.php' ?>

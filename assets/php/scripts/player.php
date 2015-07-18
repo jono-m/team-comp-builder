@@ -33,6 +33,18 @@ switch($method) {
         $player_id = urlvar("player_id");
         $db->remove_player($player_id);
         break;
+    case "addchamp":
+        $player_id = urlvar("player_id");
+        $champ_id = urlvar("champ_id");
+        $role = urlvar("role");
+        $db->add_player_champion($player_id, $role, $champ_id);
+        break;
+    case "removechamp":
+        $player_id = urlvar("player_id");
+        $champ_id = urlvar("champ_id");
+        $role = urlvar("role");
+        $db->remove_player_champion($player_id, $role, $champ_id);
+        break;
 }
 $db->disconnect();
 ?>

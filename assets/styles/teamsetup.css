@@ -1,0 +1,52 @@
+.tabbar {
+    margin-bottom: 20px;
+}
+#comp_types .comp-label {
+    float: left;
+    margin: 0 50px 0 20px;
+}
+#comp_types .comp-label a {
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+    text-transform: uppercase;
+    height: 100px;
+    font-weight: bold;
+    width: 100px;
+    font-size: 20px;
+}
+#comp_types .strength_selector {
+    float: right;
+    display: inline-block;
+}
+#comp_types .strength_selector .listbox-button a {
+    font-size: 40px;
+    color: #333333;
+}
+#comp_types .strength_selector .listbox-button a:hover {
+    color: #AAAAAA;
+}
+#comp_types .strength_selector .listbox-button-active a {
+    color: #FFFFFF;
+}
+#comp_types .strength_selector .listbox-button-active .S, #comp_types .strength_selector .listbox-button-active .S:hover {
+    background-color: #CC0000;
+}
+#comp_types .strength_selector .listbox-button-active .A, #comp_types .strength_selector .listbox-button-active .A:hover {
+    background-color: #FF9900;
+}
+#comp_types .strength_selector .listbox-button-active .B, #comp_types .strength_selector .listbox-button-active .B:hover {
+    background-color: #007700;
+}
+#comp_types .strength_selector .listbox-button-active .C, #comp_types .strength_selector .listbox-button-active .C:hover {
+    background-color: #0000AA;
+}
+#comp_types .strength_selector .listbox-button-active .D, #comp_types .strength_selector .listbox-button-active .D:hover {
+    background-color: #660066;
+}
+#comp_types .strength_selector .listbox-button-active  {
+    cursor: default;
+}
+#comp_types .strength_selector .listbox-button-active a:hover  {
+    color: #FFFFFF;
+}
