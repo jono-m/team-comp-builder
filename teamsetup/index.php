@@ -1,19 +1,25 @@
 <?php include_once '../header.php' ?>
 <link rel="stylesheet" type="text/css" href="/assets/styles/teamsetup.css">
 <script src="/assets/js/pages/teamsetup.js"></script>
+<div id="summary" class="clearfix">
+    <div class="header1">Team Overview</div>
+    <div class="stat">Roster Size: 10</div>
+    <div class="stat">Composition Types: 10</div>
+    <div class="stat">Playable Champions: 10</div>
+</div>
 <div class="tabbar clearfix">
-    <div class="tab tab-first" id="tab_players">Players</div>
-    <div class="tab tab-middle" id="tab_comp_types">Composition Types</div>
+    <div class="tab tab-first" id="tab_players">Roster</div>
+    <div class="tab tab-middle" id="tab_comp_types">Compositions</div>
     <div class="tab tab-last" id="tab_champions">Champions</div>
 </div>
-<div class="tabpage" id="tabpage_players">
+<div class="tabpage clearfix" id="tabpage_players">
+    <div class="button" id="add_player">+ Add Player</div>
     <div class="listbox listbox-divider" id="player_list">
-        <div class="listbox-item listbox-add listbox-button" id="add_player"><a>+</a></div>
     </div>
 </div>
 <div class="tabpage" id="tabpage_comp_types">
     <div class="listbox listbox-divider" id="comp_type_list">
-        <div class="listbox-item listbox-add listbox-button" id="add_comp_type"><a>+</a></div>
+        <div class="listbox-item listbox-add listbox-button" id="add_comp_type">+</div>
     </div>
 </div>
 <div class="tabpage" id="tabpage_champions">

@@ -1,75 +1,121 @@
 body {
-    background-color: #000033;
-    font-family: "Helvetica", sans-serif;
-    color: #FFFFFF;
+    background-color: #eaedf3;
+    font-family: "Helvetica Neue", sans-serif;
+    color: #eaedf3;
+    text-shadow: rgba(26, 36, 47, 0.4);
 }
-#titlebar {
-    background-color: #000088;
-    padding: 20px 0px 20px 0px;
-    min-width: 800px;
+a {
+    text-shadow: rgba(26, 36, 47, 0.4);
+    color: #5C7097;
+}
+a:hover {
+    color: #A2AEC6;
+}
+.centercell {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+#navbar, #navbar .topbar-container {
+    background-color: #020E26;
+    height: 20px;
+}
+#titlebar, #titlebar .topbar-container {
+    background-color: #5C7097;
+    height: 50px;
+}
+.topbar-container {
+    margin: auto;
+    height: 100%;
+    min-width: 748px;
+    max-width: 1000px;
 }
 #logo {
     display: inline-block;
-    color: #FFFFFF;
-    font-weight: bold;
-    font-size: 15px;
-    margin-left: 20px;
-    margin-right: 50px;
+    float: left;
+    padding-right: 20px;
+    height: 100%;
+}
+#logo img {
+    display: inline-block;
+    position: relative;
+    height: 60%;
+    top: 20%;
 }
 #nav {
-    display: inline-block;
+    display: block;
+    height: 100%;
 }
 .navitem {
-    display: inline-block;
-    margin-right: 30px;
-    padding: 0 10px 0 10px;
-    border-width: 0 2px 0 2px;
-    border-color: #AAAAFF;
-    border-style: solid;
-    text-transform: uppercase;
-    font-weight: bold;
+    display: table;
+    float: left;
     font-size: 12px;
+    height: 100%;
+    background-color: #020E26;
 }
 .navitem a {
-    color: #FFFFFF;
+    color: #eaedf3;
     text-decoration: none;
+    padding: 0 5px 0 5px;
 }
-.navitem a:hover {
-    color: #AAAAFF;
+.navitem:hover {
+    background-color: #0E234C;
+}
+.navitem-current:hover {
+    background-color: transparent;
+}
+.navitem-current a {
+    color: #66B566;
+}
+.navitem-current a:hover {
+    color: #66B566;   
+}
+#copyright {
+    float: right;
+    display: table;
+    height: 100%;
+    padding: 0 0 0 20px;
+    font-size: 10px;
 }
 #content {
     margin: auto;
-    padding: 80px;
     min-width: 748px;
-    max-width: 956px;
+    max-width: 1000px;
+}
+#path {
+    padding: 20px 0 20px 0px;
+    font-size: 12px;
+}
+#path a {
+    float: left;
+    text-transform: uppercase;
+}
+#path .spacer {
+    float: left;
+    position: relative;
+    top: -1px;
+    display: inline-block;
+    color: #2D4471;
+    margin: 0 10px 0 10px;
 }
 .header1 {
-    display: inline-block;
-    float: left;
-    clear: both;
-    text-transform: uppercase;
+    display: block;
     font-size: 30px;
-    font-weight: bolder;
-    margin-bottom: 40px;
+    font-weight: bold;
+    font-family: 'Nanum Gothic', Arial, Tahoma
 }
 .header2 {
-    clear: both;
-    color: #AAAAAA;
-    text-transform: uppercase;
+    font-weight: bold;
     font-size: 15px;
-    margin-bottom: 20px;
 }
 .header3 {
     font-size: 12px;
-    color: #888888;
-    margin-bottom: 10px;
 }
 .div-title {
     margin-bottom: 10px;
 }
 .listbox {
     clear: both;
-    overflow-y: auto;
 }
 .listbox-item {
     position: relative;
@@ -77,7 +123,7 @@ body {
     margin: 2px;
     text-align: center;
     z-index: 1;
-    background-color: #777777;
+    background-color: #D4DAE7;
 }
 .listbox-item a {
     position: relative;
@@ -85,12 +131,11 @@ body {
     top: 0;
     display: table-cell;
     vertical-align: middle;
-    color: #FFFFFF;
+    color: #eaedf3;
     text-decoration: none;
-    width: 80px;
-    height: 80px;
-    font-size: 13px;
-    font-weight: bold;
+    width: 92px;
+    height: 92px;
+    font-size: 15px;
     padding: 10px;
     z-index: 2;
     /* Warning: Needed for oldIE support, but words are broken up letter-by-letter */
@@ -105,7 +150,7 @@ body {
     -ms-hyphens: auto;
     hyphens: auto;
 
-    background:rgba(0, 0, 0, 0.7);
+    background:rgba(0, 0, 0, 0.5);
 }
 
 .listbox-button {
@@ -113,7 +158,7 @@ body {
     cursor: hand;
 }
 .listbox-button a:hover {
-    background:rgba(0, 0, 0, 0.4);
+    background:rgba(0, 0, 0, 0);
 }
 
 .listbox-item-image {
@@ -155,28 +200,33 @@ body {
     opacity: 1;
     filter: alpha(opacity=100); /* For IE8 and earlier */
 }
-.listbox-add {
-    background-color: #555555;
-}
+
 .listbox-add a {
-    color: #888888;
+    background-color: #E3C180;
+    color: #eaedf3;
     font-size: 40px;
 }
+
+.listbox-add a:hover {
+    background-color: #FFEDCB;
+    color: white;
+}
+
 .listbox-divider {
-    min-height: 80px;
-    padding: 10px;
-    background-color: #111111;
+    /*background-color: #111111;*/
+    border-style: solid;
+    border-color: #A2AEC6;
+    border-width: 0px;
+    background-color: #eaedf3;
     margin: 0 0 10px 0;
 }
 .button {
     display: inline-block;
-    height: 15px;
-    padding: 5px;
-    line-height: 15px;
+    padding: 5px 5px 6px 5px;
+    border: #710C0C 1px solid;
+    color: #FFCBCB;
     font-size: 10px;
-    border: #888888 2px solid;
-    color: #CCCCCC;
-    background-color: #000044;
+    background-color: #AA3939;
     cursor: pointer; cursor: hand;
 }
 .button:hover {
@@ -195,35 +245,39 @@ body {
     background-color: #00AA00;
 }
 .tabbar {
-    width: 100%;
-    display: block;
+    display: table;
     text-align: center;
-    border-width: 0px 0 2px 0;
-    border-color: #FFFFFF;
-    border-style: solid;
+    border-style: dotted;
+    border-color: #5C7097;
+    border-width: 1px;
 }
 .tab {
-    margin: auto;
-    float: left;
-    display: inline-block;
-    padding: 5px 20px 5px 20px;
-    height: 30px;
-    line-height: 30px;
+    background-color: #eaedf3;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5px 10px 5px 10px;
+    width: 10px;
     cursor: pointer;
     cursor: hand;
-    text-transform: uppercase;
-    font-weight: bold;
+    font-size: 12px;
+    color: #5C7097;
+    border-style: dotted;
+    border-color: #5C7097;
+    border-width: 0 1px 0 0;
+}
+.tab-first {
 }
 .tab:hover {
-    color: #BBBBBB;
+    background-color: #D4DAE7;
+    color: #5C7097;
 }
 .tab-current {
-    background-color: #FFFFFF;
-    color: #333333;
+    color: #2D882D;
     cursor: auto;
 }
 .tab-current:hover {
-    color: #333333;
+    color: #2D882D;
+    background-color: transparent;
 }
 .popup {
     z-index: 10;

@@ -11,12 +11,22 @@
     <script src="/assets/js/objects/comp_type.js"></script>
 </head>
 <body>
+    <div id="navbar">
+        <div class="topbar-container clearfix">
+            <div id="nav">
+                <div class="navitem navitem-current"><a class="centercell" href="/teamsetup">Team Manager</a></div>
+                <div class="navitem"><a class="centercell" a href="/builder">Composition Builder</a></div>
+            </div>
+        </div>
+    </div>
     <div id="titlebar">
-        <div id="logo">League of Legends Composition Builder</div>
-        <div id="nav">
-            <div class="navitem"><a href="/builder">Composition Builder</a></div>
-            <div class="navitem"><a href="/teamsetup">Team Setup</a></div>
+        <div class="topbar-container clearfix">
+            <div id="logo"><img src="/assets/images/logo_full.png"/></div>
+            <div id="copyright"><div class="centercell">© 2015 Jonathan Matthews</div></div>
         </div>
     </div>
     <div id="wrapper">
         <div id="content">
+            <div id="path" class="clearfix">
+                <a href="/">Home</a><div class="spacer">&gt;</div><a href="/teamsetup/">Team Manager</a>
+            </div>

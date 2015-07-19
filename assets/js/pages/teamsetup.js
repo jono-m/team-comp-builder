@@ -73,11 +73,32 @@ var page = (function() {
         $("#player_list").children().not(":last").remove();
         for (player_index = 0; player_index < player_manager.get_players().length; player_index++) {
             player = player_manager.get_players()[player_index];
-            $("#add_player").before('<div class="listbox-item listbox-button">' + 
-                                        '<a href="/teamsetup/player/?player_id=' + player.player_id + '">' +
-                                            player.player_name +
-                                        '</a>' +
-                                      '</div>');
+            $("#player_list").append('<a class="clearfix" href="/teamsetup/player/?player_id=' + player.player_id + '"><div class="listbox-row">' +
+    '<div class="player_name">' + player.player_name + '</div>' + 
+    '<div class="lanes">' +
+        '<div class="lane top-lane">' +
+            '<div class="header3">Top Laners</div>' +
+            '<div class="number">' + player.champions["Top Lane"].length + '</div>' +
+        '</div>' +
+        '<div class="lane jungle">' +
+            '<div class="header3">Junglers</div>' +
+            '<div class="number">' + player.champions["Jungle"].length + '</div>' +
+        '</div>' +
+        '<div class="lane mid-lane">' +
+            '<div class="header3">Mid Laners</div>' +
+            '<div class="number">' + player.champions["Mid Lane"].length + '</div>' +
+        '</div>' +
+        '<div class="lane adc">' +
+            '<div class="header3">AD Carries</div>' +
+            '<div class="number">' + player.champions["AD Carry"].length + '</div>' +
+        '</div>' +
+        '<div class="lane support">' +
+            '<div class="header3">Supports</div>' +
+            '<div class="number">' + player.champions["Support"].length + '</div>' +
+        '</div>' +
+    '</div>' +
+'</div></a>');
+
         }
     };
 
