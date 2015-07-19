@@ -47,10 +47,18 @@ $( document ).ready(function() {
     $("#rename .popup-close").click(function() {page.hide_rename_player()});
     $("#rename .popup-confirm").click(function() {page.rename_player()});
 
+    $(".popup-shader").click(function() {
+        page.hide_champion_select();
+        page.hide_rename_player();
+    });
+
     page.reloadPlayer();
     page.refreshChampionList();
     page.hide_champion_select();
     page.hide_rename_player();
+
+    util.addPath('Team Manager', '/teamsetup/');
+    util.addPath('Unknown Player', '/teamsetup/player/?player_id=' + player_id);
 });
 
 var page = (function() {
@@ -93,7 +101,7 @@ var page = (function() {
     pub.delete_player = function() {
         if(confirm("Are you sure you want to delete this player?")) {
             player_manager.delete(player_id, function() {
-                // window.location.href = "/teamsetup/";
+                window.location.href = "/teamsetup/";
             });
         }
     }
@@ -108,7 +116,17 @@ var page = (function() {
     }
 
     pri.fillPlayer = function() {
-        $("#player_name").html(player_manager.get_player().player_name);
+        var player  = player_manager.get_player();
+        util.removeLastPath();
+        util.addPath(player.player_name, '/teamsetup/player/?player_id=' + player_id)
+        $("#player_name").html(player.player_name);
+        $("#summary").children().not(":first").not("#buttonpanel").remove();
+        $("#summary").append(
+    '<div class="stat">Top Laners: ' + player.champions["Top Lane"].length + '</div>' + 
+    '<div class="stat">Junglers: ' + player.champions["Jungle"].length + '</div>' + 
+    '<div class="stat">Mid Laners: ' + player.champions["Mid Lane"].length + '</div>' + 
+    '<div class="stat">AD Carries: ' + player.champions["AD Carry"].length + '</div>' + 
+    '<div class="stat">Supports: ' + player.champions["Support"].length + '</div>');
         pri.fillLane(player_manager.get_player().champions["Top Lane"], "top_laners", "Top Lane");
         pri.fillLane(player_manager.get_player().champions["Jungle"], "junglers", "Jungle");
         pri.fillLane(player_manager.get_player().champions["Mid Lane"], "mid_laners", "Mid Lane");
@@ -131,7 +149,7 @@ var page = (function() {
             $("#add_" + lane_id).before('<div class="listbox-item">' +
                                             '<img src="' + champion.champ_img + '" class="listbox-item-image"/>' + 
                                             '<img src="/assets/images/trash.png" class="listbox-item-delete delete-' + lane_id + '" id="delete_' + champion.champ_id + '"/>' +
-                                            '<a>' + champion.champ_name + '</a>' +
+                                            '<a class="image-link">' + champion.champ_name + '</a>' +
                                         '</div>');
         }
 
@@ -157,7 +175,7 @@ var page = (function() {
             }
             $("#champion_list").append('<div class="listbox-item ' + extra_flag + '" id="' + champion.champ_id + '">' +
                                             '<img src="' + champion.champ_img + '" class="listbox-item-image"/>' +
-                                            '<a>' + champion.champ_name + '</a>' +
+                                            '<a class="image-link">' + champion.champ_name + '</a>' +
                                         '</div>');
         }
         $("#champion_list .listbox-button").click(function() {

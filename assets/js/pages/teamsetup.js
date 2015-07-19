@@ -32,8 +32,10 @@ $( document ).ready(function() {
     page.refreshChampionList();
     page.refreshPlayerList();
     page.refreshCompTypeList();
-    page.show_tab("tab_champions");
-    page.show_champ_comp_types(1);
+    page.show_tab("tab_players");
+    page.hide_champ_comp_types();
+
+    util.addPath('Team Manager', '/teamsetup/');
 });
 
 var page = (function() {
@@ -82,6 +84,7 @@ var page = (function() {
     }
 
     pri.fillPlayerList = function() {
+        pri.updateSummary();
         $("#player_list").html('');
         for (player_index = 0; player_index < player_manager.get_players().length; player_index++) {
             player = player_manager.get_players()[player_index];
@@ -115,6 +118,7 @@ var page = (function() {
     };
 
     pri.fillChampionList = function() {
+        pri.updateSummary();
         for (champ_index = 0; champ_index < champion_manager.get_champions().length; champ_index++) {
             champion = champion_manager.get_champions()[champ_index];
             $("#champion_list").append('<div class="listbox-item listbox-button" id="' + champion.champ_id + '">' +
@@ -128,6 +132,7 @@ var page = (function() {
     };
 
     pri.fillCompTypeList = function() {
+        pri.updateSummary();
         $("#comp_type_list").html('');
         for (comp_type_index = 0; comp_type_index < comp_type_manager.get_comp_types().length; comp_type_index++) {
             comp_type = comp_type_manager.get_comp_types()[comp_type_index];
@@ -138,6 +143,19 @@ var page = (function() {
                                         '</div>');
         }
     };
+
+    pri.updateSummary = function() {
+        if(player_manager.get_players() == null ||
+           comp_type_manager.get_comp_types() == null ||
+           champion_manager.get_champions() == null ) {
+            return
+        }
+        $("#summary").children().not(":first").remove()
+        $("#summary").append(
+    '<div class="stat">Roster Size: ' + player_manager.get_players().length + '</div>' +
+    '<div class="stat">Composition Types: ' + comp_type_manager.get_comp_types().length + '</div>' +
+    '<div class="stat">Champions: ' + champion_manager.get_champions().length + '</div>')
+    }
 
     pri.champ_id = 0;
     pri.comp_type_changes = {};
@@ -188,7 +206,8 @@ var page = (function() {
             $("#comp-type" + comp_type[0].comp_id + " .listbox-button").click(function() {
                 if($(this).hasClass("listbox-button-active") == false) {
                     var new_strength = $(this).children().html();
-                    pri.comp_type_changes[comp_type[0].comp_id] = new_strength;
+                    var comp_id = $(this).parent().parent()[0].id.substring(9)
+                    pri.comp_type_changes[comp_id] = new_strength;
                     $(this).parent().find('.listbox-button-active').removeClass('listbox-button-active');
                     $(this).addClass("listbox-button-active");
                 }

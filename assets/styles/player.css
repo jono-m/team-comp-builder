@@ -1,9 +1,51 @@
+#summary {
+    background-color: #392500;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+#summary .header1 {
+    margin-bottom: 20px;
+}
+#summary .stat {
+    font-size: 12px;
+    display: inline-block;
+    float: left;
+    color: #E3C180;
+    margin-right: 20px;
+}
+.listbox .header3 {
+    color: #392500;
+    background-color: #AA8339;
+    padding: 6px 0 5px 20px;
+}
+.listbox-divider {
+    background-color: #FFEDCB;
+    margin-bottom: 10px;
+}
+.listbox-item {
+    margin: 5px 5px 5px 0;
+}
 #buttonpanel {
     float: right;
+    margin-top: 10px;
 }
 .text-entry {
     margin-bottom: 20px;
 }
+#popup_title {
+    height: 10%;
+}
+#popup_entry {
+    height: 10%;
+}
 #champion_list {
-    height: 300px;
+    height: 80%;
+    padding: 20px;
+    overflow-y: scroll;
+    background-color: #392500;
+}
+#rename .popup-content {
+    max-width: 600px;
+    height: auto;
 }

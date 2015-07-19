@@ -9,6 +9,7 @@
     <script src="/assets/js/objects/champion.js"></script>
     <script src="/assets/js/objects/player.js"></script>
     <script src="/assets/js/objects/comp_type.js"></script>
+    <script src="/assets/js/objects/util.js"></script>
 </head>
 <body>
     <div id="navbar">
@@ -28,5 +29,5 @@
     <div id="wrapper">
         <div id="content">
             <div id="path" class="clearfix">
-                <a href="/">Home</a><div class="spacer">&gt;</div><a href="/teamsetup/">Team Manager</a>
+                <a href="/teamsetup/">Home</a>
             </div>

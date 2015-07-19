@@ -21,14 +21,17 @@
 }
 #tabpage_players a {
     display: inline-block;
-    width: 33%;
-    margin: 0.25% 0 0.25% 0;
+    width: 49%;
+    margin: 0.5% 0 0.5% 0;
     font-weight: normal;
     float: left;
 }
-#tabpage_players a:nth-child(3n+2) {
-    margin-left: 0.5%;
-    margin-right: 0.5%;
+#tabpage_players a:nth-child(2n) {
+    margin-left: 2%;
+}
+#player_list a:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 .player_name {
     display: block;
@@ -79,15 +82,15 @@
     color: #710C0C;
 }
 #comp_types .strength_selector {
-    background-color: #FFEDCB;
 }
 #comp_types .strength_selector .listbox-button {
     margin: 0;
+    background-color: transparent;
 }
 #comp_types .strength_selector .listbox-button a {
     font-size: 40px;
     color: #5C7097;
-    background-color: #FFEDCB;
+    background-color: transparent;
     border: 1px #A2AEC6 dashed;
 }
 #comp_types .strength_selector .listbox-button a:hover {
@@ -113,4 +116,7 @@
 }
 #champion_list {
     text-align: center;
+}
+#champ_comp_types .popup-content {
+    max-width: 700px;
 }

@@ -5,7 +5,7 @@
     <div class="header1">Team Overview</div>
     <div class="stat">Roster Size: 10</div>
     <div class="stat">Composition Types: 10</div>
-    <div class="stat">Playable Champions: 10</div>
+    <div class="stat">Champions: 10</div>
 </div>
 <div class="tabbar clearfix">
     <div class="tab tab-first" id="tab_players">Roster</div>
@@ -32,8 +32,8 @@
         <div class="popup-section clearfix" id="popup_title">
             <img src = "" class="popup-titleimage"/>
             <div class="popup-title header1"></div>
-            <div class="button popup-close">X</div>
-            <div class="button button-good popup-confirm">✓</div>
+            <div class="button popup-close">Close</div>
+            <div class="button button-good popup-confirm">Update Champion</div>
         </div>
         <div id="comp_types" class="listbox listbox-divider">
                 
