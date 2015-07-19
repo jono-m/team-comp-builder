@@ -1,7 +1,6 @@
 #summary {
-    background-color: #020E26;
+    background-color: #392500;
     padding: 20px;
-    padding-bottom: 80px;
     width: 100%;
 }
 #summary .header1 {
@@ -24,6 +23,7 @@
     display: inline-block;
     width: 33%;
     margin: 0.25% 0 0.25% 0;
+    font-weight: normal;
     float: left;
 }
 #tabpage_players a:nth-child(3n+2) {
@@ -32,8 +32,8 @@
 }
 .player_name {
     display: block;
-    background-color: #E38080;
-    color: #710C0C;
+    background-color: #5C7097;
+    color: #0E234C;
     font-size: 12px;
     font-weight: bold;
     padding: 6px 0 5px 20px;
@@ -42,76 +42,75 @@
     display: table;
     float: left;
     width: 100%;
-    background-color: #FFCBCB;
+    background-color: #A2AEC6;
 }
 .lanes .lane {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-    padding: 5px 0 5px 0;
+    padding: 7px 0 4px 0;
 }
 .lanes .lane .header3 {
     margin-bottom: 5px;
     padding: 2px;
-    color: #710C0C;
+    color: #0E234C;
     font-size: 10px;
 }
 .lanes .lane .number {
-    color: #390000;
+    color: #020E26;
     font-weight: bold;
     font-size: 12px;
 }
-#add_player {
+#add_player, #add_comp_type {
     float: right;
     clear: both;
 }
 
-#comp_types .comp-label {
-    float: left;
-    margin: 0 50px 0 20px;
+#comp_types .listbox-row {
+    display: block;
+    margin-bottom: 10px;
 }
-#comp_types .comp-label a {
-    position: relative;
-    display: table-cell;
-    vertical-align: middle;
-    text-transform: uppercase;
-    height: 100px;
+#comp_types .comp-label {
+    display: block;
+    font-size: 12px;
+    padding: 6px 0 5px 20px;
+    background-color: #E3C180;
     font-weight: bold;
-    width: 100px;
-    font-size: 20px;
+    color: #710C0C;
 }
 #comp_types .strength_selector {
-    float: right;
-    display: inline-block;
+    background-color: #FFEDCB;
+}
+#comp_types .strength_selector .listbox-button {
+    margin: 0;
 }
 #comp_types .strength_selector .listbox-button a {
     font-size: 40px;
-    color: #333333;
+    color: #5C7097;
+    background-color: #FFEDCB;
+    border: 1px #A2AEC6 dashed;
 }
 #comp_types .strength_selector .listbox-button a:hover {
-    color: #AAAAAA;
+    background-color: #A2AEC6;
 }
 #comp_types .strength_selector .listbox-button-active a {
-    color: #FFFFFF;
-}
-#comp_types .strength_selector .listbox-button-active .S, #comp_types .strength_selector .listbox-button-active .S:hover {
-    background-color: #CC0000;
-}
-#comp_types .strength_selector .listbox-button-active .A, #comp_types .strength_selector .listbox-button-active .A:hover {
-    background-color: #FF9900;
-}
-#comp_types .strength_selector .listbox-button-active .B, #comp_types .strength_selector .listbox-button-active .B:hover {
-    background-color: #007700;
-}
-#comp_types .strength_selector .listbox-button-active .C, #comp_types .strength_selector .listbox-button-active .C:hover {
-    background-color: #0000AA;
-}
-#comp_types .strength_selector .listbox-button-active .D, #comp_types .strength_selector .listbox-button-active .D:hover {
-    background-color: #660066;
+    color: #B0DDB0;
+    border: 1px #2D882D solid;
+    background-color: #2D882D;
 }
 #comp_types .strength_selector .listbox-button-active  {
     cursor: default;
 }
 #comp_types .strength_selector .listbox-button-active a:hover  {
-    color: #FFFFFF;
+    background-color: #2D882D;
+}
+#popup_title {
+    height: 20%;
+}
+#comp_types {
+    height: 80%;
+    overflow-y: scroll;
+}
+#champion_list {
+    text-align: center;
 }

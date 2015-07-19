@@ -14,12 +14,12 @@
 </div>
 <div class="tabpage clearfix" id="tabpage_players">
     <div class="button" id="add_player">+ Add Player</div>
-    <div class="listbox listbox-divider" id="player_list">
+    <div class="listbox listbox-divider clearfix" id="player_list">
     </div>
 </div>
 <div class="tabpage" id="tabpage_comp_types">
+    <div class="button" id="add_comp_type">+ Add Composition Type</div>
     <div class="listbox listbox-divider" id="comp_type_list">
-        <div class="listbox-item listbox-add listbox-button" id="add_comp_type">+</div>
     </div>
 </div>
 <div class="tabpage" id="tabpage_champions">
@@ -27,15 +27,16 @@
     </div>
 </div>
 <div class="popup" id="champ_comp_types">
+    <div class="popup-shader"></div>
     <div class="popup-content">
-        <div class="popup-section clearfix">
+        <div class="popup-section clearfix" id="popup_title">
             <img src = "" class="popup-titleimage"/>
             <div class="popup-title header1"></div>
             <div class="button popup-close">X</div>
             <div class="button button-good popup-confirm">✓</div>
         </div>
-        <div id="comp_types" class="listbox">
-            
+        <div id="comp_types" class="listbox listbox-divider">
+                
         </div>
     </div>
 </div>
