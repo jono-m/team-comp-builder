@@ -318,4 +318,62 @@ class DB {
 
         return $champions_comp_types;
     }
+
+    // Session table methods
+    function create_session($session_name) {
+
+    }
+
+    function end_session($session_id) {
+
+    }
+
+    function get_session_comp_type_ids($session_id) {
+
+    }
+
+    function set_session_comp_type_id($session_id, $role, $comp_id, $comp_type_number) {
+        
+    }
+
+    function get_session_picked_champion_ids($session_id) {
+
+    }
+
+    function set_session_picked_champion_id($session_id, $role, $champ_id) {
+
+    }
+
+    function get_session_picked_player_ids($session_id) {
+
+    }
+
+    function set_session_picked_player_id($session_id, $role, $player_id) {
+
+    }
+
+    function get_session_starter_ids($session_id) {
+
+    }
+
+    function set_session_starter_id($session_id, $role, $starter_id, $starter_number) {
+
+    }
+
+    function get_session_enemy_champion_ids($session_id) {
+
+    }
+
+    function set_session_enemy_champion_id($session_id, $enemy_champion_id, $champion_number) {
+
+    } 
+
+    function get_session_ban_ids($session_id) {
+
+    }
+
+    // ban_id is a champ_id. teamban is true if own ban. false if enemy ban.
+    function set_session_ban_id($session_id, $ban_champ_id, $teamban, $ban_number) {
+
+    }
 }
