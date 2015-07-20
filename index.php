@@ -1,3 +1,3 @@
-<?php
-include 'teamsetup/index.php';
-?>
+<script>
+window.location = '/teamsetup/'
+</script>

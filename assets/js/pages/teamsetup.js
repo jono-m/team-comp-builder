@@ -71,7 +71,7 @@ var page = (function() {
 
     pub.add_player = function() {
         var new_name = prompt("Enter the name of the new player.", "");
-        if(new_name != null) {
+        if(new_name != null && new_name != "") {
             player_manager.new(new_name, page.refreshPlayerList);
         }
     }
@@ -192,25 +192,32 @@ var page = (function() {
         $("#comp_types").html('');
         for (champ_comp_type_index = 0; champ_comp_type_index < champion.comp_types.length; champ_comp_type_index++) {
             var comp_type = champion.comp_types[champ_comp_type_index]
-            $("#comp_types").append('<div class="listbox-row clearfix" id="comp-type'+comp_type[0].comp_id+'">' +
-                                        '<div class="comp-label">' + comp_type[0].comp_type + '</div>' +
-                                        '<div class="strength_selector">' +
-                                            '<div class="listbox-item listbox-button"><a class="S">S</a></div>' +
-                                            '<div class="listbox-item listbox-button"><a class="A">A</a></div>' +
-                                            '<div class="listbox-item listbox-button"><a class="B">B</a></div>' +
-                                            '<div class="listbox-item listbox-button"><a class="C">C</a></div>' +
-                                            '<div class="listbox-item listbox-button listbox-last"><a class="D">D</a></div>' +
-                                        '</div>' +
-                                    '</div>');
-            $("#comp-type" + comp_type[0].comp_id + " ." + comp_type[1]).parent().addClass("listbox-button-active");
-            $("#comp-type" + comp_type[0].comp_id + " .listbox-button").click(function() {
-                if($(this).hasClass("listbox-button-active") == false) {
-                    var new_strength = $(this).children().html();
-                    var comp_id = $(this).parent().parent()[0].id.substring(9)
-                    pri.comp_type_changes[comp_id] = new_strength;
-                    $(this).parent().find('.listbox-button-active').removeClass('listbox-button-active');
-                    $(this).addClass("listbox-button-active");
-                }
+            var strength_initial = comp_type[1]
+            $("#comp_types").append(
+                '<div class="comp_type" id="comp-type' + comp_type[0].comp_id + '">' +
+                    '<div class="comp_type_name">' + comp_type[0].comp_type + '</div>' +
+                    '<div class="comp_strength">' +
+                        '<div class="grades">' +
+                            '<div class="grade grade-1">1 (Weak)</div>' +
+                            '<div class="grade grade-2">2</div>' +
+                            '<div class="grade grade-3">3</div>' +
+                            '<div class="grade grade-4">4</div>' +
+                            '<div class="grade grade-5">5 (Strong)</div>' +
+                        '</div>' +
+                        '<div class="slider">' +
+                            '<input type=range min=1 max=5 value=' + strength_initial + '/>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>');
+
+            $("#comp-type" + comp_type[0].comp_id + " .slider input").val(strength_initial);
+            $("#comp-type" + comp_type[0].comp_id + " .grade-" + comp_type[1]).addClass("grade-selected");
+            $("#comp-type" + comp_type[0].comp_id + " .slider input").on("change mousemove", function() {
+                $(this).parent().parent().find('.grade').removeClass('grade-selected')
+                var new_strength = $(this).val();
+                var comp_id = $(this).parent().parent().parent()[0].id.substring(9)
+                pri.comp_type_changes[comp_id] = new_strength;
+                $(this).parent().parent().find('.grade-' + new_strength).addClass('grade-selected')
             });
         }
         $(window).resize();

@@ -69,43 +69,66 @@
     clear: both;
 }
 
-#comp_types .listbox-row {
-    display: block;
-    margin-bottom: 10px;
+.slider {
+    background-color: #2D4471;
 }
-#comp_types .comp-label {
-    display: block;
-    font-size: 12px;
-    padding: 6px 0 5px 20px;
-    background-color: #E3C180;
-    font-weight: bold;
-    color: #710C0C;
+.slider input {
+    margin: 0 6% 0 6%;
+    width: 88%;
 }
-#comp_types .strength_selector {
+.comp_type {
+    display: table;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
 }
-#comp_types .strength_selector .listbox-button {
+.comp_type_name {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #392500;
+    color: #FFEDCB;
+    padding: 5px 10px 5px 10px;
+    width: 30%;
+}
+.comp_strength {
+    display: table-cell;
+    width: 70%;
+}
+.grades {
+    display: table;
+    width: 100%;
+}
+.grade {
+    display: inline-block;
     margin: 0;
-    background-color: transparent;
+    float: left;
+    font-size: 12px;
+    padding: 5px 0 5px 0;
+    width: 20%;
+    background-color: #fbf7f0;
+    color: #E3C180;
+    border: 1px solid #E3C180;
+    border-width: 1px 1px 0 0;
 }
-#comp_types .strength_selector .listbox-button a {
-    font-size: 40px;
-    color: #5C7097;
-    background-color: transparent;
-    border: 1px #A2AEC6 dashed;
+.grade-selected.grade-5 {
+    background-color: #66B566;
+    color: #2D882D;
 }
-#comp_types .strength_selector .listbox-button a:hover {
-    background-color: #A2AEC6;
+.grade-selected.grade-4 {
+    background-color: #B0DDB0;
+    color: #66B566;
 }
-#comp_types .strength_selector .listbox-button-active a {
-    color: #B0DDB0;
-    border: 1px #2D882D solid;
-    background-color: #2D882D;
+.grade-selected.grade-3 {
+    background-color: #E3C180;
+    color: #714E0C;
 }
-#comp_types .strength_selector .listbox-button-active  {
-    cursor: default;
+.grade-selected.grade-2 {
+    background-color: #FFCBCB;
+    color: #E38080;
 }
-#comp_types .strength_selector .listbox-button-active a:hover  {
-    background-color: #2D882D;
+.grade-selected.grade-1 {
+    background-color: #E38080;
+    color: #AA3939;
 }
 #popup_title {
     height: 20%;

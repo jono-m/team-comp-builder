@@ -42,7 +42,7 @@ var champion_manager = (function() {
 
         for (champ_index = 0; champ_index < pri.champions.length; champ_index++) {
             champion = pri.champions[champ_index];
-            if (champion.champ_name.toLowerCase().includes(search_text.toLowerCase())) {
+            if (champion.champ_name.toLowerCase().indexOf(search_text.toLowerCase()) > -1) {
                 search_champions.push(champion);
             }
         }

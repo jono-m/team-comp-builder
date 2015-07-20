@@ -4,6 +4,7 @@
     <title>Dashboard | Team Composition Builder</title>
     <link rel="stylesheet" type="text/css" href="/assets/styles/reset.css">
     <link rel="stylesheet" type="text/css" href="/assets/styles/main.css">
+    <link rel="stylesheet" type="text/css" href="/assets/styles/slider.css">
     <script src="/assets/lib/jquery-1.11.3.min.js"></script>
     <script src="/assets/lib/jquery.watermark-3.2.0/jquery.watermark.min.js"></script>
     <script src="/assets/js/objects/champion.js"></script>

@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/styles/teamsetup.css">
 <script src="/assets/js/pages/teamsetup.js"></script>
 <div id="summary" class="clearfix">
-    <div class="header1">Team Overview</div>
+    <div class="header1">Team Manager</div>
     <div class="stat">Roster Size: 10</div>
     <div class="stat">Composition Types: 10</div>
     <div class="stat">Champions: 10</div>

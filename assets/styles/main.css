@@ -32,6 +32,7 @@ a:hover {
     height: 100%;
     min-width: 748px;
     max-width: 1000px;
+    padding: 0 20px 0 20px;
 }
 #logo {
     display: inline-block;
@@ -83,6 +84,7 @@ a:hover {
     margin: auto;
     min-width: 748px;
     max-width: 1000px;
+    padding: 0 20px 0 20px;
 }
 #path {
     padding: 20px 0 20px 0px;

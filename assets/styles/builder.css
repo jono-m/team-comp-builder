@@ -1,0 +1,131 @@
+.summarybox {
+    float: left;
+    background-color: #392500;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.summarybox .header1 {
+    margin-bottom: 20px;
+}
+.summarybox .stat {
+    font-size: 12px;
+    display: inline-block;
+    float: left;
+    color: #E3C180;
+    margin-right: 20px;
+}
+#new_session {
+    float: right;
+    margin-bottom: 20px;
+}
+.session {
+    float: left;
+    width: 48%;
+}
+.session_bar {
+    background-color: #5C7097;
+    padding: 5px 10px 5px 10px;
+    color: #2D4471;
+    font-size: 11px;
+}
+.session_name {
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+}
+.session_viewers {
+    display: inline-block;
+    float: right;
+}
+.session_overview {
+    background-color: #A2AEC6;  
+    color: #2D4471; 
+}
+.picks {
+    display: table;
+    width: 100%;
+}
+.teampicks {
+    display: table-cell;
+    width: 70%;
+}
+.versus {
+    display: table-cell;
+    vertical-align: middle;
+    width: 5%;
+    font-size: 12px;
+    font-weight: bolder;
+    color: #2D4471;
+}
+.enemypicks {
+    display: table-cell;
+    width: 25%;
+}
+.enemypicks .champion_name {
+    display: table-cell;
+    vertical-align: middle;
+}
+.bans {
+    border-width: 1px 0 0 0;
+    border-color: #5C7097;
+    border-style: solid;
+}
+.pick {
+    display: table;
+    width: 100%;
+    height: 30px;
+}
+.lane {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 20px;
+    font-size: 12px;
+    width: 60%;
+}
+.player-champion {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 20%;
+}
+.player_name {
+    font-weight: bold;
+    font-size: 12px;
+}
+.champion_name {
+    font-size: 10px;
+}
+.champion_image {
+    display: table-cell;
+    vertical-align: middle;
+    height: 30px;
+    width: 15%;
+    padding: 5px 5px 4px 5px;
+    text-align: center;
+}
+.champion_image img {
+    height: 100%;
+}
+.banstext {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    padding-left: 20px;
+    font-size: 10px;
+    color: #2D4471;
+}
+.teambans {
+    display: table-cell;
+    vertical-align: middle;
+    width: 70%;
+    text-align: right;
+    border-width: 0 1px 0 0;
+    border-color: #5C7097;
+    border-style: dashed;
+}
+.enemybans {
+    display: table-cell;
+    vertical-align: middle;
+    width: 25%;
+}

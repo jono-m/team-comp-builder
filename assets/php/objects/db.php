@@ -32,12 +32,14 @@ class DB {
     // player table operations.
     
     function add_player($player_name) {
+        $player_name = $this->conn->real_escape_string($player_name);
         $sql = "INSERT INTO players (player_id, player_name) VALUES (NULL, '" . $player_name . "')";
         $this->query($sql);
         return $this->conn->insert_id;
     }
 
     function remove_player($player_id) {
+        $player_id = $this->conn->real_escape_string($player_id);
         if ($this->get_player_name($player_id) == null) {
             return false;
         }
@@ -47,6 +49,7 @@ class DB {
     }
 
     function get_player_name($player_id) {
+        $player_id = $this->conn->real_escape_string($player_id);
         $sql = "SELECT * FROM players WHERE player_id = " . $player_id . " ORDER BY player_name";
         $result = $this->query($sql);
         if ($result) {
@@ -71,6 +74,8 @@ class DB {
     }
 
     function change_player_name($player_id, $new_name) {
+        $player_id = $this->conn->real_escape_string($player_id);
+        $new_name = $this->conn->real_escape_string($new_name);
         if($this->get_player_name($player_id) == null) {
             return false;
         }
@@ -82,6 +87,7 @@ class DB {
     // champion table operations.
     
     function add_champ($champ_name) {
+        $champ_name = $this->conn->real_escape_string($champ_name);
         $sql = "INSERT INTO champions (champ_id, champ_name) VALUES (NULL, '" . $champ_name . "')";
         $this->query($sql);
 
@@ -95,6 +101,7 @@ class DB {
     }
 
     function remove_champ($champ_id) {
+        $champ_id = $this->conn->real_escape_string($champ_id);
         if ($get_champ_name($champ_id) == null) {
             return false;
         }
@@ -104,6 +111,7 @@ class DB {
     }
 
     function get_champ_name($champ_id) {
+        $champ_id = $this->conn->real_escape_string($champ_id);
         $sql = "SELECT * FROM champions WHERE champ_id = " . $champ_id;
         $result = $this->query($sql);
         if ($result) {
@@ -128,6 +136,8 @@ class DB {
     }
 
     function change_champ_name($champ_id, $new_name) {
+        $champ_id = $this->conn->real_escape_string($champ_id);
+        $new_name = $this->conn->real_escape_string($new_name);
         if(get_champ_name($champ_id) == null) {
             return false;
         }
@@ -139,6 +149,7 @@ class DB {
     // comp_types table operations.
     
     function add_comp_type($comp_type) {
+        $comp_type = $this->conn->real_escape_string($comp_type);
         $sql = "INSERT INTO comp_types (comp_id, comp_type) VALUES (NULL, '" . $comp_type . "')";
         echo $sql;
         $this->query($sql);
@@ -154,6 +165,7 @@ class DB {
     }
 
     function remove_comp_type($comp_id) {
+        $comp_id = $this->conn->real_escape_string($comp_id);
         if ($get_comp_type_name($comp_type_id) == null) {
             return false;
         }
@@ -164,6 +176,7 @@ class DB {
     }
 
     function get_comp_type($comp_id) {
+        $comp_id = $this->conn->real_escape_string($comp_id);
         $sql = "SELECT * FROM comp_types WHERE comp_id = " . $comp_id;
         $result = $this->query($sql);
         if ($result) {
@@ -188,6 +201,8 @@ class DB {
     }
 
     function change_comp_type($comp_id, $new_type) {
+        $comp_id = $this->conn->real_escape_string($comp_id);
+        $new_type = $this->conn->real_escape_string($new_type);
         if(get_comp_type_name($comp_id) == null) {
             return false;
         }
@@ -199,16 +214,23 @@ class DB {
     // player_champion table operations.
 
     function add_player_champion($player_id, $role, $champ_id) {
+        $player_id = $this->conn->real_escape_string($player_id);
+        $role = $this->conn->real_escape_string($role);
+        $champ_id = $this->conn->real_escape_string($champ_id);
         $sql = "INSERT INTO players_champions (player_id, champ_id, role) VALUES ('" . $player_id . "', '" . $champ_id . "', '" . $role . "')";
         $this->query($sql);
     }
 
     function remove_player_champion($player_id, $role, $champ_id) {
+        $player_id = $this->conn->real_escape_string($player_id);
+        $role = $this->conn->real_escape_string($role);
+        $champ_id = $this->conn->real_escape_string($champ_id);
         $sql = "DELETE FROM players_champions WHERE player_id = " . $player_id . " AND champ_id = " . $champ_id . " AND role = '" . $role . "'";
         $this->query($sql);
     }
 
     function get_player_champ_ids($player_id) {
+        $player_id = $this->conn->real_escape_string($player_id);
         $sql = "SELECT * FROM players_champions WHERE player_id = " . $player_id;
         $result = $this->query($sql);
 
@@ -232,6 +254,7 @@ class DB {
     }
 
     function get_champion_player_ids($champ_id) {
+        $champ_id = $this->conn->real_escape_string($champ_id);
         $sql = "SELECT * FROM players_champions WHERE champ_id = " . $champ_id;
         $result = $this->query($sql);
 
@@ -257,21 +280,29 @@ class DB {
      // champions_comp_types table operations.
 
     function add_champions_comp_type($champ_id, $comp_id) {
-        $sql = "INSERT INTO champions_comp_types (champ_id, comp_id, strength) VALUES ('" . $champ_id . "', '" . $comp_id . "', 'D')";
+        $champ_id = $this->conn->real_escape_string($champ_id);
+        $comp_id = $this->conn->real_escape_string($comp_id);
+        $sql = "INSERT INTO champions_comp_types (champ_id, comp_id, strength) VALUES ('" . $champ_id . "', '" . $comp_id . "', 3)";
         $this->query($sql);
     }
 
     function remove_champions_comp_type($champ_id, $comp_id) {
+        $champ_id = $this->conn->real_escape_string($champ_id);
+        $comp_id = $this->conn->real_escape_string($comp_id);
         $sql = "DELETE FROM champions_comp_types WHERE champ_id = " . $champ_id . " AND comp_id = " . $comp_id;
         $this->query($sql);
     }
 
     function update_champions_comp_type_strength($champ_id, $comp_id, $new_strength) {
+        $champ_id = $this->conn->real_escape_string($champ_id);
+        $comp_id = $this->conn->real_escape_string($comp_id);
+        $new_strength = $this->conn->real_escape_string($new_strength);
         $sql = "UPDATE champions_comp_types SET strength = '" . $new_strength . "' WHERE champ_id = " . $champ_id . " AND comp_id = " . $comp_id;
         $this->query($sql);
     }
 
     function get_champions_comp_types($champ_id) {
+        $champ_id = $this->conn->real_escape_string($champ_id);
         $sql = "SELECT * FROM champions_comp_types WHERE champ_id = " . $champ_id;
         $result = $this->query($sql);
 

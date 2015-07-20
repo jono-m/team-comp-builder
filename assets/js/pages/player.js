@@ -72,6 +72,7 @@ var page = (function() {
     pub.show_champion_select = function(role) {
         pri.adding_to_role = role;
         pri.added_champions = [];
+        pub.refreshChampionList();
         $("#champselect").show();
     }
 
@@ -85,14 +86,13 @@ var page = (function() {
             player_manager.add_champion(player_id, champ_id, pri.adding_to_role, function() {
                 pub.hide_champion_select();
                 pub.reloadPlayer();
-                pub.refreshChampionList();
             });
         }
     }
 
     pub.rename_player = function() {
         var new_name = $("#player_renamebox").val();
-        if(new_name != null) {
+        if(new_name != null && new_name != "") {
             player_manager.rename(player_id, new_name, pub.reloadPlayer)
         }
         pub.hide_rename_player();
