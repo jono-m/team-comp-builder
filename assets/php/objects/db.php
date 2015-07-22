@@ -321,59 +321,262 @@ class DB {
 
     // Session table methods
     function create_session($session_name) {
+        $session_name = $this->conn->real_escape_string($session_name);
+        $sql = "INSERT INTO cb_session (session_id, session_name) VALUES (NULL, '" . $session_name . "')";
+        $this->query($sql);
+        $session_id = $this->conn->insert_id;
+        $sql = "INSERT INTO cb_session_teampicks (session_id, role, picked_champ_id, picked_player_id, starter_1_id, starter_2_id, starter_3_id, starter_4_id, starter_5_id, comp_type_1_id, comp_type_2_id, comp_type_3_id) VALUES (" . $session_id . ", 'Top Lane', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+        $this->query($sql);
+        $sql = "INSERT INTO cb_session_teampicks (session_id, role, picked_champ_id, picked_player_id, starter_1_id, starter_2_id, starter_3_id, starter_4_id, starter_5_id, comp_type_1_id, comp_type_2_id, comp_type_3_id) VALUES (" . $session_id . ", 'Jungle', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+        $this->query($sql);
+        $sql = "INSERT INTO cb_session_teampicks (session_id, role, picked_champ_id, picked_player_id, starter_1_id, starter_2_id, starter_3_id, starter_4_id, starter_5_id, comp_type_1_id, comp_type_2_id, comp_type_3_id) VALUES (" . $session_id . ", 'Mid Lane', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+        $this->query($sql);
+        $sql = "INSERT INTO cb_session_teampicks (session_id, role, picked_champ_id, picked_player_id, starter_1_id, starter_2_id, starter_3_id, starter_4_id, starter_5_id, comp_type_1_id, comp_type_2_id, comp_type_3_id) VALUES (" . $session_id . ", 'AD Carry', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+        $this->query($sql);
+        $sql = "INSERT INTO cb_session_teampicks (session_id, role, picked_champ_id, picked_player_id, starter_1_id, starter_2_id, starter_3_id, starter_4_id, starter_5_id, comp_type_1_id, comp_type_2_id, comp_type_3_id) VALUES (" . $session_id . ", 'Support', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)";
+        $this->query($sql);
 
+        $sql = "INSERT INTO cb_session_enemypicks (session_id, picked_champ_1_id, picked_champ_2_id, picked_champ_3_id, picked_champ_4_id, picked_champ_5_id) VALUES (" . $session_id . ", NULL, NULL, NULL, NULL, NULL)";
+        $this->query($sql);
+
+        $sql = "INSERT INTO cb_session_bans (session_id, teamban, ban_1_id, ban_2_id, ban_3_id) VALUES (" . $session_id . ", '0', NULL, NULL, NULL)";
+        $this->query($sql);
+
+        $sql = "INSERT INTO cb_session_bans (session_id, teamban, ban_1_id, ban_2_id, ban_3_id) VALUES (" . $session_id . ", '1', NULL, NULL, NULL)";
+        $this->query($sql);
+        return $session_id;
     }
 
     function end_session($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "DELETE FROM cb_session WHERE session_id = " . $session_id;
+        $this->query($sql);
+    }
 
+    function get_session_name($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "SELECT * FROM cb_session WHERE session_id = " . $session_id ;
+        $result = $this->query($sql);
+        if ($result) {
+            $row = $result->fetch_assoc();
+            return $row["session_name"];
+        } else {
+            return null;
+        }
+    }
+
+    function get_session_ids() {
+        $sql = "SELECT session_id FROM cb_session";
+        $result = $this->query($sql);
+
+        $session_ids = array();
+        if($result) {
+            while ($row = $result->fetch_assoc()) {
+                $session_ids[] = $row["session_id"];
+            }
+        }
+        return $session_ids;
+    }
+
+    function set_session_name($session_id, $session_name) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $session_name = $this->conn->real_escape_string($session_name);
+        $sql = "UPDATE cb_session SET session_name = '" . $session_name . "' WHERE session_id = " . $session_id;
+        $this->query($sql);
     }
 
     function get_session_comp_type_ids($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "SELECT role, comp_type_1_id, comp_type_2_id, comp_type_3_id FROM cb_session_teampicks WHERE session_id=" . $session_id;
+        $result = $this->query($sql);
 
+        $comp_type_ids = array(
+            "Top Lane" => null,
+            "Jungle" => null,
+            "Mid Lane" => null,
+            "AD Carry" => null,
+            "Support" => null,
+        );
+
+        if($result) {
+            while ($row = $result->fetch_assoc()) {
+                $comp_type_1_id = $row["comp_type_1_id"];
+                $comp_type_2_id = $row["comp_type_2_id"];
+                $comp_type_3_id = $row["comp_type_3_id"];
+                $role = $row["role"];
+                $comp_type_ids[$role] = array($comp_type_1_id, $comp_type_2_id, $comp_type_3_id);
+            }
+        }
+
+        return $comp_type_ids;
     }
 
     function set_session_comp_type_id($session_id, $role, $comp_id, $comp_type_number) {
-        
+        $session_id = $this->conn->real_escape_string($session_id);
+        $role = $this->conn->real_escape_string($role);
+        $comp_id = $this->conn->real_escape_string($comp_id);
+        $comp_type_number = $this->conn->real_escape_string($comp_type_number);
+        $sql = "UPDATE cb_session_teampicks SET comp_type_" . $comp_type_number . "_id = " . $comp_id . " WHERE session_id = " . $session_id . " AND role = '" . $role . "'";
+        $this->query($sql);
     }
 
     function get_session_picked_champion_ids($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "SELECT role, picked_champ_id FROM cb_session_teampicks WHERE session_id=" . $session_id;
+        $result = $this->query($sql);
 
+        $champion_ids = array(
+            "Top Lane" => null,
+            "Jungle" => null,
+            "Mid Lane" => null,
+            "AD Carry" => null,
+            "Support" => null,
+        );
+
+        if($result) {
+            while ($row = $result->fetch_assoc()) {
+                $picked_champ_id = $row["picked_champ_id"];
+                $role = $row["role"];
+                $champion_ids[$role] = $picked_champ_id;
+            }
+        }
+
+        return $champion_ids;
     }
 
     function set_session_picked_champion_id($session_id, $role, $champ_id) {
-
+        $session_id = $this->conn->real_escape_string($session_id);
+        $role = $this->conn->real_escape_string($role);
+        $champ_id = $this->conn->real_escape_string($champ_id);
+        $sql = "UPDATE cb_session_teampicks SET picked_champ_id = " . $champ_id . " WHERE session_id = " . $session_id . " AND role = '" . $role . "'";
+        $this->query($sql);
     }
 
     function get_session_picked_player_ids($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "SELECT role, picked_player_id FROM cb_session_teampicks WHERE session_id=" . $session_id;
+        $result = $this->query($sql);
 
+        $player_ids = array(
+            "Top Lane" => null,
+            "Jungle" => null,
+            "Mid Lane" => null,
+            "AD Carry" => null,
+            "Support" => null,
+        );
+
+        if($result) {
+            while ($row = $result->fetch_assoc()) {
+                $picked_player_id = $row["picked_player_id"];
+                $role = $row["role"];
+                $player_ids[$role] = $picked_player_id;
+            }
+        }
+
+        return $player_ids;
     }
 
     function set_session_picked_player_id($session_id, $role, $player_id) {
-
+        $session_id = $this->conn->real_escape_string($session_id);
+        $role = $this->conn->real_escape_string($role);
+        $player_id = $this->conn->real_escape_string($player_id);
+        $sql = "UPDATE cb_session_teampicks SET picked_player_id = " . $player_id . " WHERE session_id = " . $session_id . " AND role = '" . $role . "'";
+        $this->query($sql);
     }
 
     function get_session_starter_ids($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "SELECT role, starter_1_id, starter_2_id, starter_3_id, starter_4_id, starter_5_id FROM cb_session_teampicks WHERE session_id=" . $session_id;
+        $result = $this->query($sql);
 
+        $player_ids = array(
+            "Top Lane" => null,
+            "Jungle" => null,
+            "Mid Lane" => null,
+            "AD Carry" => null,
+            "Support" => null,
+        );
+
+        if($result) {
+            while ($row = $result->fetch_assoc()) {
+                $starter_1_id = $row["starter_1_id"];
+                $starter_2_id = $row["starter_2_id"];
+                $starter_3_id = $row["starter_3_id"];
+                $starter_4_id = $row["starter_4_id"];
+                $starter_5_id = $row["starter_5_id"];
+                $role = $row["role"];
+                $player_ids[$role] = array($starter_1_id, $starter_2_id, $starter_3_id, $starter_4_id, $starter_5_id);
+            }
+        }
+
+        return $player_ids;
     }
 
     function set_session_starter_id($session_id, $role, $starter_id, $starter_number) {
-
+        $session_id = $this->conn->real_escape_string($session_id);
+        $role = $this->conn->real_escape_string($role);
+        $starter_id = $this->conn->real_escape_string($starter_id);
+        $starter_number = $this->conn->real_escape_string($starter_number);
+        $sql = "UPDATE cb_session_teampicks SET starter_" . $starter_number . "_id = " . $starter_id . " WHERE session_id = " . $session_id . " AND role = '" . $role . "'";
+        $this->query($sql);
     }
 
     function get_session_enemy_champion_ids($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "SELECT * FROM cb_session_enemypicks WHERE session_id=" . $session_id;
+        $result = $this->query($sql);
 
+        $champ_ids = null;
+
+        if($result) {
+            while ($row = $result->fetch_assoc()) {
+                $picked_champ_1_id = $row["picked_champ_1_id"];
+                $picked_champ_2_id = $row["picked_champ_2_id"];
+                $picked_champ_3_id = $row["picked_champ_3_id"];
+                $picked_champ_4_id = $row["picked_champ_4_id"];
+                $picked_champ_5_id = $row["picked_champ_5_id"];
+                $champ_ids = array($picked_champ_1_id, $picked_champ_2_id, $picked_champ_3_id, $picked_champ_4_id, $picked_champ_5_id);
+            }
+        }
+
+        return $champ_ids;
     }
 
     function set_session_enemy_champion_id($session_id, $enemy_champion_id, $champion_number) {
-
+        $session_id = $this->conn->real_escape_string($session_id);
+        $enemy_champion_id = $this->conn->real_escape_string($enemy_champion_id);
+        $champion_number = $this->conn->real_escape_string($champion_number);
+        $sql = "UPDATE cb_session_enemypicks SET picked_champ_" . $champion_number . "_id = " . $enemy_champion_id . " WHERE session_id = " . $session_id;
+        $this->query($sql);
     } 
 
     function get_session_ban_ids($session_id) {
+        $session_id = $this->conn->real_escape_string($session_id);
+        $sql = "SELECT * FROM cb_session_bans WHERE session_id=" . $session_id;
+        $result = $this->query($sql);
 
+        $champ_ids = array (null, null);
+
+        if($result) {
+            while ($row = $result->fetch_assoc()) {
+                $ban_1_id = $row["ban_1_id"];
+                $ban_2_id = $row["ban_2_id"];
+                $ban_3_id = $row["ban_3_id"];
+                $teamban = $row["teamban"];
+                $champ_ids[intval($teamban)] = array($ban_1_id, $ban_2_id, $ban_3_id);
+            }
+        }
+
+        return $champ_ids;
     }
 
     // ban_id is a champ_id. teamban is true if own ban. false if enemy ban.
     function set_session_ban_id($session_id, $ban_champ_id, $teamban, $ban_number) {
-
+        $session_id = $this->conn->real_escape_string($session_id);
+        $ban_champ_id = $this->conn->real_escape_string($ban_champ_id);
+        $teamban = $this->conn->real_escape_string($teamban);
+        $ban_number = $this->conn->real_escape_string($ban_number);
+        $sql = "UPDATE cb_session_bans SET ban_" . $ban_number . "_id = " . $ban_champ_id . " WHERE session_id = " . $session_id . " AND teamban = " . $teamban;
+        $this->query($sql);
     }
 }

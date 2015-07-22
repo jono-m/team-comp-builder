@@ -59,10 +59,10 @@ a:hover {
 .navitem a {
     color: #eaedf3;
     text-decoration: none;
-    padding: 0 5px 0 5px;
+    padding: 0 10px 0 10px;
 }
-.navitem:hover {
-    background-color: #0E234C;
+.navitem a:hover {
+    color: #A2AEC6;
 }
 .navitem-current:hover {
     background-color: transparent;
@@ -152,7 +152,8 @@ a:hover {
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
-
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .listbox-item .image-link {

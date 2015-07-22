@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+    document.title = 'Team Manager | Syner.gg';
     $(".tab").click(function() {
         page.show_tab($(this)[0].id);
     });

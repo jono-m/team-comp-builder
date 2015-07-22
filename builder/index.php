@@ -3,100 +3,12 @@
 <script src="/assets/js/pages/builder.js"></script>
 <div class="summarybox clearfix">
     <div class="header1">Composition Builder</div>
-    <div class="stat">Active Sessions: 0</div>
+    <div class="stat">Active Sessions: <span id="num_sessions">0</span></div>
 </div>
 <div class="clearfix" id="sessions">
     <div class="button" id="new_session">+ Create New Session</div>
     <div class="listbox listbox-divider clearfix" id="session_list">
-        <div class="session">
-           <a href="/builder/session/?session_id=1"><div class="joinsession"><div class="jointext"><div class="centercell">Join Session</div></div></div></a>
-            <div class="session_bar clearfix">
-                <div class="session_name">Poopy Bandits</div>
-                <div class="session_viewers">14 viewers</div>
-            </div>
-            <div class="session_overview clearfix">
-                <div class="picks">
-                    <div class="teampicks">
-                        <div class="pick">
-                            <div class="lane">Top Lane</div>
-                            <div class="player-champion">
-                                <div class="player_name">David</div>
-                                <div class="champion_name">Aatrox</div>
-                            </div>
-                            <div class="champion_image"><img src="/assets/images/Aatrox.png"/></div>
-                        </div>
-                        <div class="pick">
-                            <div class="lane">Jungle</div>
-                            <div class="player-champion">
-                                <div class="player_name">TJ</div>
-                                <div class="champion_name">Rammus</div>
-                            </div>
-                            <div class="champion_image"><img src="/assets/images/Rammus.png"/></div>
-                        </div>
-                        <div class="pick">
-                            <div class="lane">Mid Lane</div>
-                            <div class="player-champion">
-                                <div class="player_name">Solimine</div>
-                                <div class="champion_name">Ziggs</div>
-                            </div>
-                            <div class="champion_image"><img src="/assets/images/Ziggs.png"/></div>
-                        </div>
-                        <div class="pick">
-                            <div class="lane">AD Carry</div>
-                            <div class="player-champion">
-                                <div class="player_name">Mikey/Sully</div>
-                                <div class="champion_name">Jinx</div>
-                            </div>
-                            <div class="champion_image"><img src="/assets/images/Jinx.png"/></div>
-                        </div>
-                        <div class="pick">
-                            <div class="lane">Support</div>
-                            <div class="player-champion">
-                                <div class="player_name">Jono</div>
-                                <div class="champion_name">Braum</div>
-                            </div>
-                            <div class="champion_image"><img src="/assets/images/Braum.png"/></div>
-                        </div>
-                    </div>
-                    <div class="versus">VS</div>
-                    <div class="enemypicks">
-                        <div class="pick">
-                            <div class="champion_image"><img src="/assets/images/Leona.png"/></div>
-                            <div class="champion_name">Leona</div>
-                        </div>
-                        <div class="pick">
-                            <div class="champion_image"><img src="/assets/images/unknown.png"/></div>
-                            <div class="champion_name">Not picked</div>
-                        </div>
-                        <div class="pick">
-                            <div class="champion_image"><img src="/assets/images/unknown.png"/></div>
-                            <div class="champion_name">Not picked</div>
-                        </div>
-                        <div class="pick">
-                            <div class="champion_image"><img src="/assets/images/unknown.png"/></div>
-                            <div class="champion_name">Not picked</div>
-                        </div>
-                        <div class="pick">
-                            <div class="champion_image"><img src="/assets/images/unknown.png"/></div>
-                            <div class="champion_name">Not picked</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bans">
-                    <div class="banstext">Bans</div>
-                    <div class="teambans">
-                        <div class="champion_image"><img src="/assets/images/Leona.png"/></div>
-                        <div class="champion_image"><img src="/assets/images/Jarvaniv.png"/></div>
-                        <div class="champion_image"><img src="/assets/images/Chogath.png"/></div>
-                    </div>
-                    <div class="enemybans">
-                        <div class="champion_image"><img src="/assets/images/Ekko.png"/></div>
-                        <div class="champion_image"><img src="/assets/images/Tahmkench.png"/></div>
-                        <div class="champion_image"><img src="/assets/images/Blitzcrank.png"/></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
 <?php include_once '../footer.php' ?>

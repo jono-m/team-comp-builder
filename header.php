@@ -11,6 +11,7 @@
     <script src="/assets/js/objects/player.js"></script>
     <script src="/assets/js/objects/comp_type.js"></script>
     <script src="/assets/js/objects/util.js"></script>
+    <script src="/assets/js/objects/session.js"></script>
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
@@ -33,7 +34,7 @@
     <div id="navbar">
         <div class="topbar-container clearfix">
             <div id="nav">
-                <div class="navitem navitem-current"><a class="centercell" href="/teamsetup">Team Manager</a></div>
+                <div class="navitem"><a class="centercell" href="/teamsetup">Team Manager</a></div>
                 <div class="navitem"><a class="centercell" a href="/builder">Composition Builder</a></div>
             </div>
         </div>

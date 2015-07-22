@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
     $("#delete_player").click(function() {
         page.delete_player();
     });
@@ -120,6 +119,7 @@ var page = (function() {
         util.removeLastPath();
         util.addPath(player.player_name, '/teamsetup/player/?player_id=' + player_id)
         $("#player_name").html(player.player_name);
+        document.title = player.player_name + ' | Syner.gg';
         $("#summary").children().not(":first").not("#buttonpanel").remove();
         $("#summary").append(
     '<div class="stat">Top Laners: ' + player.champions["Top Lane"].length + '</div>' + 
